@@ -1,10 +1,11 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from .models import Notes
 from .serializator import Noteserializer, NoteCreate, NoteupdateSerializer
 
 class NoteListCreateView(generics.ListCreateAPIView):
     queryset = Notes.objects.all()
+    permission_classes = [permissions.AllowAny]
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -13,7 +14,8 @@ class NoteListCreateView(generics.ListCreateAPIView):
 
 class NoteDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Notes.objects.all()
-
+    permission_classes = [permissions.AllowAny]
+    
     def get_serializer_class(self):
         if self.request.method in ['PUT', 'PATCH']:
             return NoteupdateSerializer

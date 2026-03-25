@@ -5,7 +5,7 @@ from .models import Notes
 class Noteserializer(serializers.ModelSerializer):
     class Meta:
         model = Notes
-        fields = ['id', 'title', 'content', 'created_at', 'updated_at']
+        fields = ['id', 'title', 'content', 'created_at', 'updated_date']
         read_only_fields = ['id', 'created_at', 'updated_at']
 
     def validate_title(self, value):
